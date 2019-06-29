@@ -9,9 +9,10 @@ Another feature that is not finished yet is a notification engine that checks fo
 - Implement a sorting algorithm (to provide feature parity)
 
 Screenshots:
-| ![](drawer.png)| ![](user_drawer.png) |
+
+| ![](drawer.png) | ![](user_drawer.png) |
 |:---:|:---:|
 | ![](login.png) | ![](content_overview.png) |
 | ![](image_1.png) | ![](image_2.png) |
 | ![](timetable.png) | ![](news.png) |
-| ![](user_settings.png |   |
+| ![](user_settings.png) | |
