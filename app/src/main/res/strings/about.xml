@@ -1,0 +1,5 @@
+<resources>
+    <string name="aboutLibraries_description_showIcon">true</string>
+    <string name="aboutLibraries_description_showVersion">true</string>
+    <string name="aboutLibraries_description_text">@string/app_description</string>
+</resources>

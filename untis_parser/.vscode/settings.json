@@ -1,0 +1,5 @@
+{
+    "java.dependency.packagePresentation": "flat",
+    "maven.view": "flat",
+    "java.configuration.updateBuildConfiguration": "automatic"
+}

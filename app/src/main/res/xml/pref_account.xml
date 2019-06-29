@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/pref_header_data_sync">
+        <ListPreference
+            android:defaultValue="180"
+            android:entries="@array/pref_sync_frequency_titles"
+            android:entryValues="@array/pref_sync_frequency_values"
+            android:key="sync_frequency"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_title_sync_frequency" />
+        <!-- This preference simply launches an intent when selected. Use this UI sparingly, per
+                design guidelines. -->
+        <Preference android:title="@string/pref_title_system_sync_settings">
+            <intent android:action="android.settings.SYNC_SETTINGS">
+                <extra
+                    android:name="Settings.EXTRA_AUTHORITIES"
+                    android:value="@string/account_type_dsb" />
+            </intent>
+        </Preference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_header_notifications">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="notifications_enabled"
+            android:title="@string/pref_title_notifications_enabled" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_header_behaviour">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="parser_enabled"
+            android:title="@string/pref_title_parser_enabled" />
+    </PreferenceCategory>
+</PreferenceScreen>

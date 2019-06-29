@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_drawer_open">Navigationsleiste öffnen</string>
+    <string name="navigation_drawer_close">Navigationsleiste schließen</string>
+    <string name="nav_header_desc">Navigationsheader</string>
+    <string name="nav_group_title_content">Inhalt</string>
+    <string name="nav_item_timetables">Stundenpläne</string>
+    <string name="nav_item_tiles">Aushänge</string>
+    <string name="nav_item_news">Neuigkeiten</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="title_activity_login">Anmelden</string>
+    <string name="prompt_id">Identifikation</string>
+    <string name="prompt_password">Passwort</string>
+    <string name="action_sign_in">Einloggen</string>
+    <string name="action_sign_in_short">Einloggen</string>
+    <string name="error_incorrect_credentials">Identifikation oder Passwort falsch</string>
+    <string name="error_field_required">Dieses Feld muss ausgefüllt werden</string>
+    <string name="nav_group_title_logins">Log-ins</string>
+    <string name="nav_item_add">Log-in hinzufügen</string>
+    <string name="nav_item_edit">Log-in bearbeiten</string>
+    <string name="nav_item_delete">Log-in löschen</string>
+    <string name="prompt_alias">Alias</string>
+    <string name="error_login_exists">Dieses Log-in wurde bereits hinzugefügt. Wähle es zum Einloggen im Menü aus.</string>
+    <string name="actionbar_last_update">Stand: %s</string>
+    <string name="share_image">Bild teilen mit …</string>
+    <string name="error_no_preview">Keine Vorschau gefunden</string>
+    <string name="title_activity_settings">Einstellungen</string>
+    <string name="pref_header_general">Allgemein</string>
+    <string name="pref_header_data_sync">Daten &amp; Synchronisation</string>
+    <string name="pref_header_notifications">Benachrichtigungen</string>
+    <string name="pref_title_sync_frequency">Synchronisationshäufigkeit</string>
+    <string name="pref_title_system_sync_settings">Synchronisationseinstellungen des Systems</string>
+    <string name="pref_title_theme">Design</string>
+    <string name="pref_header_appearance">Aussehen</string>
+    <string-array name="pref_appearance_theme_titles">
+        <item>Hell</item>
+        <item>Dunkel</item>
+        <item>Automatisch (Tageszeit)</item>
+    </string-array>
+    <string-array name="pref_appearance_theme_p_titles">
+        <item>Hell</item>
+        <item>Dunkel</item>
+        <item>Automatisch (Tageszeit)</item>
+        <item>Systemeinstellungen respektieren</item>
+    </string-array>
+    <string name="action_back">Zurück</string>
+    <string name="action_next">Weiter</string>
+    <string name="menu_share_link">Link teilen mit …</string>
+    <string name="menu_share_html">HTML teilen mit …</string>
+    <string name="menu_header_advanced_sharing">Erweitertes Teilen</string>
+    <string name="share_as_image">Als Bild teilen mit …</string>
+    <string name="title_share">Teilen</string>
+    <string name="title_open_in_browser">Im Browser öffnen</string>
+    <string name="share_news">Neuigkeit teilen mit …</string>
+    <string name="toast_login_failed">Login fehlgeschlagen</string>
+    <string name="toast_dsb_license_expired">Die DSB-Lizenz deines Anbieters ist abgelaufen!</string>
+    <string name="cache_outdated">Eine veraltete zuvor zwischengespeicherte Version wird angezeigt.</string>
+    <string name="search_hint">Inhalt durchsuchen</string>
+    <string name="channel_name">Inhaltsänderungen</string>
+    <string name="channel_description">Benachrichtigt dich über geänderte oder neuen Inhalte auf DSBmobile</string>
+    <string name="pref_intent_account">Kontoeinstellungen</string>
+    <string name="pref_notify_new">Neue Inhalte</string>
+    <string name="pref_notify_updated">Aktualisierte Inhalte</string>
+    <string name="notification_content_new">Neuer Inhalt</string>
+    <string name="notification_content_updated">Inhalt wurde aktualisiert</string>
+    <string name="login_demo">Demo Log-in</string>
+    <string name="demo_alias">Demo</string>
+    <string name="action_scan_qr">QR-Code scannen</string>
+    <string name="error_qr_no_cred">Dies ist kein DSBmobile QR-Code.</string>
+    <string name="permission_camera_rationale">Kamerazugriff wird zum Scannen von QR-Codes benöt</string>
+    <string name="action_about">Über</string>
+    <string name="title_activity_content_view">Inhalte</string>
+    <string name="pref_title_notifications_enabled">Benachrichtigungen</string>
+    <string name="pref_header_behaviour">Verhalten</string>
+    <string name="pref_title_parser_enabled">HTML-Tabellen analysieren</string>
+    <string name="pref_appearance_restart_notice">Wenn dein gewähltes Design nicht übernommen wurde, starte das Programm bitte neu.</string>
+    <string name="app_description">OpenDSBmobile, eine Open Source DSBmobile Inhaltsanzeige</string>
+</resources>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
+    android:orientation="vertical"
+    tools:context=".fragments.contentviewer.TableviewViewFragment">
+    <!--
+    <com.evrencoskun.tableview.TableView
+        android:id="@+id/tableView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="?android:attr/colorBackground"
+        app:column_header_height="24dp"
+        app:row_header_width="36dp"
+        app:selected_color="@color/colorAccent"
+        app:separator_color="?attr/colorButtonNormal"
+        app:shadow_color="@color/shadow"
+        app:unselected_color="?android:attr/colorBackground" />
+-->
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Title" />
+
+    <FrameLayout
+        android:id="@+id/tableBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.inqbarna.tablefixheaders.TableFixHeaders
+            android:id="@+id/tableView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.inqbarna.tablefixheaders.TableFixHeaders>
+    </FrameLayout>
+
+</LinearLayout>

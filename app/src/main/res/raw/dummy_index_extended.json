@@ -1,0 +1,573 @@
+{
+  "Resultcode": 0,
+  "ResultStatusInfo": "",
+  "StartIndex": -1,
+  "ResultMenuItems": [
+    {
+      "Index": 0,
+      "IconLink": "",
+      "Title": "Inhalte",
+      "Childs": [
+        {
+          "Index": 2,
+          "IconLink": "https:\/\/app.dsbcontrol.de\/static\/androidicons\/News.png",
+          "Title": "News",
+          "Root": {
+            "Id": "",
+            "Date": "",
+            "Title": "",
+            "Detail": "",
+            "Tags": "",
+            "ConType": 0,
+            "Prio": 0,
+            "Index": 0,
+            "Childs": [
+              {
+                "Id": "32cda918-1f40-42f6-a94c-9abf5cfd7902",
+                "Date": "04.04.2017 10:14",
+                "Title": "Getränkeautomat in der Aula",
+                "Detail": "Leckere Erfrischungen bietet euch ab sofort unser neuer Getränkeautomat in der Aula rechts neben den Treppen.\n",
+                "Tags": "",
+                "ConType": 5,
+                "Prio": 0,
+                "Index": 0,
+                "Childs": [],
+                "Preview": ""
+              },
+              {
+                "Id": "8a8beb44-12b0-491c-8540-14d8c5877ab3",
+                "Date": "04.04.2017 10:14",
+                "Title": "Abfahrtzeit der Schulbusse",
+                "Detail": "Alle Schulbusse fahren aufgrund des Stadtfestes in dieser Woche 10 Minuten später ab.\n",
+                "Tags": "",
+                "ConType": 5,
+                "Prio": 0,
+                "Index": 0,
+                "Childs": [],
+                "Preview": ""
+              },
+              {
+                "Id": "3aecf553-c183-4bf0-a55d-b805403dccfc",
+                "Date": "04.04.2017 10:14",
+                "Title": "Schlüsselbund gefunden",
+                "Detail": "Wer vermisst seinen Schlüsselbund? Bitte im Sekretariat melden \n",
+                "Tags": "",
+                "ConType": 5,
+                "Prio": 0,
+                "Index": 0,
+                "Childs": [],
+                "Preview": ""
+              },
+              {
+                "Id": "d3227f4d-08e1-42ac-9d63-e2cfac189ea9",
+                "Date": "04.04.2017 10:14",
+                "Title": "Basketball-AG",
+                "Detail": "Die Basketball-AG findet heute in der kleinen Turnhalle statt \n",
+                "Tags": "",
+                "ConType": 5,
+                "Prio": 0,
+                "Index": 0,
+                "Childs": [],
+                "Preview": ""
+              }
+            ],
+            "Preview": ""
+          },
+          "Childs": [],
+          "MethodName": "news",
+          "NewCount": 0,
+          "SaveLastState": true
+        },
+        {
+          "Index": 1,
+          "IconLink": "https:\/\/app.dsbcontrol.de\/static\/androidicons\/Tiles.png",
+          "Title": "Aushänge",
+          "Root": {
+            "Id": "",
+            "Date": "",
+            "Title": "",
+            "Detail": "",
+            "Tags": "",
+            "ConType": 0,
+            "Prio": 0,
+            "Index": 0,
+            "Childs": [
+              {
+                "Id": "c5215c6c-b2b4-4ec4-98c9-d007bd9901a4",
+                "Date": "30.03.2017 09:08",
+                "Title": "Ausflug \"Unser Wald\"",
+                "Detail": "",
+                "Tags": "",
+                "ConType": 2,
+                "Prio": 0,
+                "Index": 0,
+                "Childs": [
+                  {
+                    "Id": "c5215c6c-b2b4-4ec4-98c9-d007bd9901a4",
+                    "Date": "30.03.2017 09:08",
+                    "Title": "Ausflug \"Unser Wald\"",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/c5215c6c-b2b4-4ec4-98c9-d007bd9901a4\/c5215c6c-b2b4-4ec4-98c9-d007bd9901a4_000.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 0,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/c5215c6c-b2b4-4ec4-98c9-d007bd9901a4\/c5215c6c-b2b4-4ec4-98c9-d007bd9901a4_000.jpg"
+                  },
+                  {
+                    "Id": "c5215c6c-b2b4-4ec4-98c9-d007bd9901a4",
+                    "Date": "30.03.2017 09:08",
+                    "Title": "Ausflug \"Unser Wald\"",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/c5215c6c-b2b4-4ec4-98c9-d007bd9901a4\/c5215c6c-b2b4-4ec4-98c9-d007bd9901a4_001.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 1,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/c5215c6c-b2b4-4ec4-98c9-d007bd9901a4\/c5215c6c-b2b4-4ec4-98c9-d007bd9901a4_001.jpg"
+                  },
+                  {
+                    "Id": "c5215c6c-b2b4-4ec4-98c9-d007bd9901a4",
+                    "Date": "30.03.2017 09:08",
+                    "Title": "Ausflug \"Unser Wald\"",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/c5215c6c-b2b4-4ec4-98c9-d007bd9901a4\/c5215c6c-b2b4-4ec4-98c9-d007bd9901a4_002.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 2,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/c5215c6c-b2b4-4ec4-98c9-d007bd9901a4\/c5215c6c-b2b4-4ec4-98c9-d007bd9901a4_002.jpg"
+                  }
+                ],
+                "Preview": ""
+              },
+              {
+                "Id": "b60a9110-8532-4c67-9d84-d7c74d3a03d6",
+                "Date": "30.03.2017 09:08",
+                "Title": "Aktuelles",
+                "Detail": "",
+                "Tags": "",
+                "ConType": 2,
+                "Prio": 0,
+                "Index": 0,
+                "Childs": [
+                  {
+                    "Id": "b60a9110-8532-4c67-9d84-d7c74d3a03d6",
+                    "Date": "30.03.2017 09:08",
+                    "Title": "Aktuelles",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/b60a9110-8532-4c67-9d84-d7c74d3a03d6\/b60a9110-8532-4c67-9d84-d7c74d3a03d6_000.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 0,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/b60a9110-8532-4c67-9d84-d7c74d3a03d6\/b60a9110-8532-4c67-9d84-d7c74d3a03d6_000.jpg"
+                  },
+                  {
+                    "Id": "b60a9110-8532-4c67-9d84-d7c74d3a03d6",
+                    "Date": "30.03.2017 09:08",
+                    "Title": "Aktuelles",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/b60a9110-8532-4c67-9d84-d7c74d3a03d6\/b60a9110-8532-4c67-9d84-d7c74d3a03d6_001.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 1,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/b60a9110-8532-4c67-9d84-d7c74d3a03d6\/b60a9110-8532-4c67-9d84-d7c74d3a03d6_001.jpg"
+                  },
+                  {
+                    "Id": "b60a9110-8532-4c67-9d84-d7c74d3a03d6",
+                    "Date": "30.03.2017 09:08",
+                    "Title": "Aktuelles",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/b60a9110-8532-4c67-9d84-d7c74d3a03d6\/b60a9110-8532-4c67-9d84-d7c74d3a03d6_002.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 2,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/b60a9110-8532-4c67-9d84-d7c74d3a03d6\/b60a9110-8532-4c67-9d84-d7c74d3a03d6_002.jpg"
+                  }
+                ],
+                "Preview": ""
+              },
+              {
+                "Id": "f4c2afbc-12df-4620-9286-c27561bbb3cf",
+                "Date": "30.03.2017 09:09",
+                "Title": "Klassenfahrt London",
+                "Detail": "",
+                "Tags": "",
+                "ConType": 2,
+                "Prio": 0,
+                "Index": 0,
+                "Childs": [
+                  {
+                    "Id": "f4c2afbc-12df-4620-9286-c27561bbb3cf",
+                    "Date": "30.03.2017 09:09",
+                    "Title": "Klassenfahrt London",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_000.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 0,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_000.jpg"
+                  },
+                  {
+                    "Id": "f4c2afbc-12df-4620-9286-c27561bbb3cf",
+                    "Date": "30.03.2017 09:09",
+                    "Title": "Klassenfahrt London",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_001.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 1,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_001.jpg"
+                  },
+                  {
+                    "Id": "f4c2afbc-12df-4620-9286-c27561bbb3cf",
+                    "Date": "30.03.2017 09:09",
+                    "Title": "Klassenfahrt London",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_002.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 2,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_002.jpg"
+                  },
+                  {
+                    "Id": "f4c2afbc-12df-4620-9286-c27561bbb3cf",
+                    "Date": "30.03.2017 09:09",
+                    "Title": "Klassenfahrt London",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_003.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 3,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_003.jpg"
+                  },
+                  {
+                    "Id": "f4c2afbc-12df-4620-9286-c27561bbb3cf",
+                    "Date": "30.03.2017 09:09",
+                    "Title": "Klassenfahrt London",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_004.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 4,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_004.jpg"
+                  },
+                  {
+                    "Id": "f4c2afbc-12df-4620-9286-c27561bbb3cf",
+                    "Date": "30.03.2017 09:09",
+                    "Title": "Klassenfahrt London",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_005.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 5,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_005.jpg"
+                  },
+                  {
+                    "Id": "f4c2afbc-12df-4620-9286-c27561bbb3cf",
+                    "Date": "30.03.2017 09:09",
+                    "Title": "Klassenfahrt London",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_006.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 6,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_006.jpg"
+                  },
+                  {
+                    "Id": "f4c2afbc-12df-4620-9286-c27561bbb3cf",
+                    "Date": "30.03.2017 09:09",
+                    "Title": "Klassenfahrt London",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_007.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 7,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_007.jpg"
+                  },
+                  {
+                    "Id": "f4c2afbc-12df-4620-9286-c27561bbb3cf",
+                    "Date": "30.03.2017 09:09",
+                    "Title": "Klassenfahrt London",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_008.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 8,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf\/f4c2afbc-12df-4620-9286-c27561bbb3cf_008.jpg"
+                  }
+                ],
+                "Preview": ""
+              },
+              {
+                "Id": "c14a46d8-a254-47d3-80d5-29bc395efedb",
+                "Date": "30.03.2017 09:07",
+                "Title": "Abiturklausuren",
+                "Detail": "",
+                "Tags": "",
+                "ConType": 2,
+                "Prio": 0,
+                "Index": 0,
+                "Childs": [
+                  {
+                    "Id": "c14a46d8-a254-47d3-80d5-29bc395efedb",
+                    "Date": "30.03.2017 09:07",
+                    "Title": "Abiturklausuren",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/c14a46d8-a254-47d3-80d5-29bc395efedb\/c14a46d8-a254-47d3-80d5-29bc395efedb_000.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 0,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/c14a46d8-a254-47d3-80d5-29bc395efedb\/c14a46d8-a254-47d3-80d5-29bc395efedb_000.jpg"
+                  }
+                ],
+                "Preview": ""
+              }
+            ],
+            "Preview": ""
+          },
+          "Childs": [],
+          "MethodName": "tiles",
+          "NewCount": 0,
+          "SaveLastState": true
+        },
+        {
+          "Index": 0,
+          "IconLink": "https:\/\/app.dsbcontrol.de\/static\/androidicons\/Timetable.png",
+          "Title": "Pläne",
+          "Root": {
+            "Id": "",
+            "Date": "",
+            "Title": "",
+            "Detail": "",
+            "Tags": "",
+            "ConType": 0,
+            "Prio": 0,
+            "Index": 0,
+            "Childs": [
+              {
+                "Id": "bf83a069-1505-474c-abc0-b2a7a8523da4",
+                "Date": "30.03.2017 09:10",
+                "Title": "Vorlesungen",
+                "Detail": "",
+                "Tags": "",
+                "ConType": 2,
+                "Prio": 0,
+                "Index": 0,
+                "Childs": [
+                  {
+                    "Id": "bf83a069-1505-474c-abc0-b2a7a8523da4",
+                    "Date": "30.03.2017 09:10",
+                    "Title": "Vorlesungen",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/bf83a069-1505-474c-abc0-b2a7a8523da4\/bf83a069-1505-474c-abc0-b2a7a8523da4_000.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 0,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/bf83a069-1505-474c-abc0-b2a7a8523da4\/bf83a069-1505-474c-abc0-b2a7a8523da4_000.jpg"
+                  }
+                ],
+                "Preview": ""
+              },
+              {
+                "Id": "4f6f6baa-cc69-4bf4-b3ec-c5e5c12c1c16",
+                "Date": "30.03.2017 09:14",
+                "Title": "Speisekarte Montag",
+                "Detail": "",
+                "Tags": "",
+                "ConType": 2,
+                "Prio": 0,
+                "Index": 0,
+                "Childs": [
+                  {
+                    "Id": "4f6f6baa-cc69-4bf4-b3ec-c5e5c12c1c16",
+                    "Date": "30.03.2017 09:14",
+                    "Title": "Speisekarte Montag",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/4f6f6baa-cc69-4bf4-b3ec-c5e5c12c1c16\/4f6f6baa-cc69-4bf4-b3ec-c5e5c12c1c16_000.png",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 0,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/4f6f6baa-cc69-4bf4-b3ec-c5e5c12c1c16\/4f6f6baa-cc69-4bf4-b3ec-c5e5c12c1c16_000.png"
+                  }
+                ],
+                "Preview": ""
+              },
+              {
+                "Id": "9cc51f50-9270-4cf8-862a-f2e2190fa413",
+                "Date": "30.03.2017 09:14",
+                "Title": "Speisekarte Dienstag",
+                "Detail": "",
+                "Tags": "",
+                "ConType": 2,
+                "Prio": 0,
+                "Index": 0,
+                "Childs": [
+                  {
+                    "Id": "9cc51f50-9270-4cf8-862a-f2e2190fa413",
+                    "Date": "30.03.2017 09:14",
+                    "Title": "Speisekarte Dienstag",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/9cc51f50-9270-4cf8-862a-f2e2190fa413\/9cc51f50-9270-4cf8-862a-f2e2190fa413_000.png",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 0,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/9cc51f50-9270-4cf8-862a-f2e2190fa413\/9cc51f50-9270-4cf8-862a-f2e2190fa413_000.png"
+                  }
+                ],
+                "Preview": ""
+              },
+              {
+                "Id": "33134690-1754-44a7-981e-5e1d679e85c4",
+                "Date": "30.03.2017 09:40",
+                "Title": "Vertretungsplan Schüler Morgen.htm",
+                "Detail": "",
+                "Tags": "",
+                "ConType": 2,
+                "Prio": 0,
+                "Index": 0,
+                "Childs": [
+                  {
+                    "Id": "33134690-1754-44a7-981e-5e1d679e85c4",
+                    "Date": "30.03.2017 09:40",
+                    "Title": "Vertretungsplan Schüler Morgen.htm",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/33134690-1754-44a7-981e-5e1d679e85c4\/vertretungsplan%20schüler%20morgen.htm",
+                    "Tags": "",
+                    "ConType": 3,
+                    "Prio": 0,
+                    "Index": 0,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/33134690-1754-44a7-981e-5e1d679e85c4\/preview.png"
+                  }
+                ],
+                "Preview": ""
+              },
+              {
+                "Id": "83e11285-2771-4a3c-af02-d07e61a9ed8d",
+                "Date": "30.03.2017 09:43",
+                "Title": "Vertretungsplan Schüler Heute",
+                "Detail": "",
+                "Tags": "",
+                "ConType": 2,
+                "Prio": 0,
+                "Index": 0,
+                "Childs": [
+                  {
+                    "Id": "83e11285-2771-4a3c-af02-d07e61a9ed8d",
+                    "Date": "30.03.2017 09:43",
+                    "Title": "Vertretungsplan Schüler Heute",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/83e11285-2771-4a3c-af02-d07e61a9ed8d\/vertretungsplan%20heute.htm",
+                    "Tags": "",
+                    "ConType": 3,
+                    "Prio": 0,
+                    "Index": 0,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/83e11285-2771-4a3c-af02-d07e61a9ed8d\/preview.png"
+                  }
+                ],
+                "Preview": ""
+              },
+              {
+                "Id": "8897ea9f-fc6c-4797-ad4f-cd0316e53158",
+                "Date": "20.07.2018 14:17",
+                "Title": "Plan2",
+                "Detail": "",
+                "Tags": "",
+                "ConType": 2,
+                "Prio": 0,
+                "Index": 0,
+                "Childs": [
+                  {
+                    "Id": "8897ea9f-fc6c-4797-ad4f-cd0316e53158",
+                    "Date": "20.07.2018 14:17",
+                    "Title": "Plan2",
+                    "Detail": "https:\/\/app.dsbcontrol.de\/data\/13ccccbb-e6a8-466a-addc-00bba830c6cf\/8897ea9f-fc6c-4797-ad4f-cd0316e53158\/8897ea9f-fc6c-4797-ad4f-cd0316e53158_000.jpg",
+                    "Tags": "",
+                    "ConType": 4,
+                    "Prio": 0,
+                    "Index": 0,
+                    "Childs": [],
+                    "Preview": "13ccccbb-e6a8-466a-addc-00bba830c6cf\/8897ea9f-fc6c-4797-ad4f-cd0316e53158\/8897ea9f-fc6c-4797-ad4f-cd0316e53158_000.jpg"
+                  }
+                ],
+                "Preview": ""
+              }
+            ],
+            "Preview": ""
+          },
+          "Childs": [],
+          "MethodName": "timetable",
+          "NewCount": 0,
+          "SaveLastState": true
+        }
+      ],
+      "MethodName": "",
+      "NewCount": 0,
+      "SaveLastState": true
+    },
+    {
+      "Index": 1,
+      "IconLink": "",
+      "Title": "Sonstiges",
+      "Childs": [
+        {
+          "Index": 0,
+          "IconLink": "https:\/\/app.dsbcontrol.de\/static\/androidicons\/Settings.png",
+          "Title": "Einstellungen",
+          "Childs": [],
+          "MethodName": "settings",
+          "NewCount": 0,
+          "SaveLastState": false
+        },
+        {
+          "Index": 1,
+          "IconLink": "https:\/\/app.dsbcontrol.de\/static\/androidicons\/Feedback.png",
+          "Title": "Feedback",
+          "Childs": [],
+          "MethodName": "feedback",
+          "NewCount": 0,
+          "SaveLastState": false
+        },
+        {
+          "Index": 2,
+          "IconLink": "https:\/\/app.dsbcontrol.de\/static\/androidicons\/About.png",
+          "Title": "Info",
+          "Childs": [],
+          "MethodName": "about",
+          "NewCount": 0,
+          "SaveLastState": false
+        },
+        {
+          "Index": 3,
+          "IconLink": "https:\/\/app.dsbcontrol.de\/static\/androidicons\/Logout.png",
+          "Title": "Logout",
+          "Childs": [],
+          "MethodName": "logout",
+          "NewCount": 0,
+          "SaveLastState": false
+        }
+      ],
+      "MethodName": "",
+      "NewCount": 0,
+      "SaveLastState": true
+    }
+  ],
+  "ChannelType": 0,
+  "MandantId": "a76d6a06-54c7-41e7-bfc0-e01bfc525e5f"
+}

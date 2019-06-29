@@ -1,0 +1,25 @@
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- These settings headers are only used on tablets. -->
+
+    <header
+        android:fragment="com.kai_jan_57.opendsbmobile.activities.SettingsActivity$GeneralPreferenceFragment"
+        android:icon="@drawable/ic_preference_general"
+        android:title="@string/pref_header_general" />
+
+    <header
+        android:fragment="com.kai_jan_57.opendsbmobile.activities.SettingsActivity$NotificationPreferenceFragment"
+        android:icon="@drawable/ic_preference_notifications"
+        android:title="@string/pref_header_notifications" />
+
+    <header
+        android:fragment="com.kai_jan_57.opendsbmobile.activities.SettingsActivity$DataSyncPreferenceFragment"
+        android:icon="@drawable/ic_preference_sync"
+        android:title="@string/pref_header_data_sync" />
+
+    <header
+        android:fragment="com.kai_jan_57.opendsbmobile.activities.SettingsActivity$AppearancePreferenceFragment"
+        android:icon="@drawable/ic_preference_appearance"
+        android:title="@string/pref_header_appearance" />
+
+</preference-headers>

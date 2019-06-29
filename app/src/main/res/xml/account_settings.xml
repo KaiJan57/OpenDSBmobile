@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/pref_intent_account" />
+    <PreferenceScreen
+        android:key="lauch_settings_activity"
+        android:title="@string/pref_intent_account"
+        android:persistent="false" >
+        <intent
+            android:action="com.kai_jan_57.opendsbmobile.settings.MAIN"
+            android:targetClass=".activities.SettingsActivity.class" />
+    </PreferenceScreen>
+
+</PreferenceScreen>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contentViewerRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/contentview_background"
+    tools:context=".activities.ContentViewerActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+
+    <com.kai_jan_57.opendsbmobile.widgets.ZoomableViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.kai_jan_57.opendsbmobile.widgets.ZoomableViewPager>
+
+    <LinearLayout
+        android:id="@+id/overlayContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/pageIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/activity_vertical_margin"
+            android:visibility="gone"
+            app:tabGravity="fill"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/contentview_button"
+            app:tabTextColor="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:id="@+id/fullscreen_content_controls"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/content_controls_height"
+            android:layout_gravity="bottom|center_horizontal"
+            android:animateLayoutChanges="true"
+            android:background="@color/black_overlay"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/photopage_bottom_control_share"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="?android:attr/actionBarItemBackground"
+                android:contentDescription="@string/title_share"
+                android:onClick="onShareClick"
+                android:src="@drawable/ic_share" />
+
+            <ImageButton
+                android:id="@+id/photopage_bottom_control_browser"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="?android:attr/actionBarItemBackground"
+                android:contentDescription="@string/title_open_in_browser"
+                android:onClick="onBrowserClick"
+                android:src="@drawable/ic_open_in_browser" />
+
+            <ImageButton
+                android:id="@+id/photopage_bottom_control_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="?android:attr/actionBarItemBackground"
+                android:contentDescription="@string/title_open_in_browser"
+                android:onClick="onSearchClick"
+                android:src="@drawable/ic_search" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>
