@@ -128,8 +128,8 @@
     <string name="title_share">Share</string>
     <string name="title_open_in_browser">Open in browser</string>
     <string name="share_news">Share news to …</string>
-    <string name="toast_login_failed">Login failed</string>
-    <string name="toast_dsb_license_expired">Your provider\'s DSB license expired!</string>
+    <string name="login_failed">Login failed</string>
+    <string name="dsb_license_expired">Your provider\'s DSB license expired!</string>
     <string name="account_type_dsb" translatable="false">com.kai_jan_57.opendsbmobile.DSB</string>
     <string name="content_authority" translatable="false">com.kai_jan_57.opendsbmobile.provider</string>
     <string name="cache_outdated">An outdated previously cached version is shown.</string>

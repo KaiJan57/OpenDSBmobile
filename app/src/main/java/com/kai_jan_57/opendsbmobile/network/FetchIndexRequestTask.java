@@ -168,6 +168,7 @@ public class FetchIndexRequestTask extends RequestSenderTask {
     private void processJson(JSONObject jsonObject) {
         try {
             LoginResult loginResult = LoginResult.values()[jsonObject.getInt(ProtocolConstants.RESULT_CODE)];
+            String resultStatusInfo = jsonObject.getString(ProtocolConstants.RESULT_STATUS_INFO);
             String mandantId = jsonObject.getString(ProtocolConstants.MANDANT_ID);
             if (loginResult == LoginResult.Login_OK) {
                 mLogin.mLastUpdate = mDate;
@@ -177,7 +178,7 @@ public class FetchIndexRequestTask extends RequestSenderTask {
 
                 Node.Dao nodeDao = Application.getInstance().getDatabase().getNodeDao();
 
-                // extract all content into node objects
+                // extract all contents into node objects
                 mCacheFilesToKeep = new ArrayList<>();
                 mNodeIdsToKeep = new ArrayList<>();
                 mUpdatedNodes = new ArrayList<>();
@@ -241,7 +242,7 @@ public class FetchIndexRequestTask extends RequestSenderTask {
                 }
                 mFetchIndexEventListener.onSuccess(mLogin.mId, false);
             } else {
-                mFetchIndexEventListener.onFail(loginResult, mandantId);
+                mFetchIndexEventListener.onFail(loginResult, resultStatusInfo);
             }
         } catch (Exception e) {
             onException(e);
@@ -286,7 +287,7 @@ public class FetchIndexRequestTask extends RequestSenderTask {
 
         void onSuccess(long loginId, boolean cached);
 
-        void onFail(LoginResult loginResult, String mandantId);
+        void onFail(LoginResult loginResult, String resultStatusInfo);
     }
 
     public interface NodeUpdateEventListener {

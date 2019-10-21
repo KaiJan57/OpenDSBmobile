@@ -7,9 +7,7 @@ import android.accounts.AccountManager;
 import android.accounts.NetworkErrorException;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -21,8 +19,6 @@ import com.kai_jan_57.opendsbmobile.database.Login;
 import com.kai_jan_57.opendsbmobile.network.FetchIndexRequestTask;
 import com.kai_jan_57.opendsbmobile.utils.FileUtils;
 import com.kai_jan_57.opendsbmobile.utils.LogUtils;
-
-import org.json.JSONObject;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -37,7 +33,7 @@ public class Authenticator extends AbstractAccountAuthenticator implements Fetch
 
     private Object mResult = null;
 
-    public Authenticator(Context context) {
+    Authenticator(Context context) {
         super(context);
         mContext = context;
     }
@@ -95,11 +91,11 @@ public class Authenticator extends AbstractAccountAuthenticator implements Fetch
 
                 bundle.clear();
                 bundle.putParcelable(AccountManager.KEY_INTENT, intent);
-                Toast.makeText(mContext, R.string.toast_login_failed, Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, R.string.login_failed, Toast.LENGTH_LONG).show();
                 return bundle;
             } else {
                 // license expired
-                Toast.makeText(mContext, R.string.toast_dsb_license_expired, Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, R.string.dsb_license_expired, Toast.LENGTH_LONG).show();
             }
         }
         if (!authToken.isEmpty()) {

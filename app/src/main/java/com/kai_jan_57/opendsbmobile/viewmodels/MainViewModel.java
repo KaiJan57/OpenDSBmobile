@@ -34,14 +34,14 @@ public class MainViewModel extends ViewModel {
         super();
     }
 
-    private void fail() {
+    private void fail(FetchIndexRequestTask.LoginResult loginResult, String resultStatusInfo) {
         if (mPreviousAccount != null) {
             mAccount.setValue(mPreviousAccount);
             Application.getInstance().setActiveAccount(mAccount.getValue());
             mPreviousAccount = null;
         }
         if (mLoginFailListener != null) {
-            mLoginFailListener.onFail();
+            mLoginFailListener.onFail(loginResult, resultStatusInfo);
         }
     }
 
@@ -82,8 +82,8 @@ public class MainViewModel extends ViewModel {
             }
 
             @Override
-            public void onFail(FetchIndexRequestTask.LoginResult loginResult, String mandantId) {
-                fail();
+            public void onFail(FetchIndexRequestTask.LoginResult loginResult, String resultStatusInfo) {
+                fail(loginResult, resultStatusInfo);
             }
         }, login, account.name, pAccountManager.getPassword(account)).execute();
     }
@@ -142,6 +142,6 @@ public class MainViewModel extends ViewModel {
     }
 
     public interface LoginFailListener {
-        void onFail();
+        void onFail(FetchIndexRequestTask.LoginResult loginResult, String resultStatusInfo);
     }
 }

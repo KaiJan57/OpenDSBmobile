@@ -52,8 +52,8 @@
     <string name="title_share">Teilen</string>
     <string name="title_open_in_browser">Im Browser öffnen</string>
     <string name="share_news">Neuigkeit teilen mit …</string>
-    <string name="toast_login_failed">Login fehlgeschlagen</string>
-    <string name="toast_dsb_license_expired">Die DSB-Lizenz deines Anbieters ist abgelaufen!</string>
+    <string name="login_failed">Login fehlgeschlagen</string>
+    <string name="dsb_license_expired">Die DSB-Lizenz deines Anbieters ist abgelaufen!</string>
     <string name="cache_outdated">Eine veraltete zuvor zwischengespeicherte Version wird angezeigt.</string>
     <string name="search_hint">Inhalt durchsuchen</string>
     <string name="channel_name">Inhaltsänderungen</string>

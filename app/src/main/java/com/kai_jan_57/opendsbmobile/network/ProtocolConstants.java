@@ -6,6 +6,7 @@ import java.util.Locale;
 public class ProtocolConstants {
     // parse
     public static final String RESULT_CODE = "Resultcode";
+    public static final String RESULT_STATUS_INFO = "ResultStatusInfo";
     public static final String MANDANT_ID = "MandantId";
     public static final String RESULT_MENU_ITEMS = "ResultMenuItems";
     public static final String INDEX = "Index";

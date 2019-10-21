@@ -16,15 +16,21 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
+import java.util.UUID;
 
 import javax.net.ssl.HttpsURLConnection;
 
 import static java.net.HttpURLConnection.HTTP_OK;
 
-public abstract class RequestSenderTask extends AsyncTask<Object, Integer, Object> {
+public abstract class
+RequestSenderTask extends AsyncTask<Object, Integer, Object> {
 
     private static final String DSBCONTROL_HOST = "https://app.dsbcontrol.de/";
     private static final String DSBCONTROL_JSON_API_PATH = "JsonHandler.ashx/GetData";
+
+    private static String getUUID() {
+        return UUID.randomUUID().toString();
+    } //"00000000-0000-0000-0000-000000000000" won't work
 
     public static String getHost() {
         return DSBCONTROL_HOST;
@@ -44,7 +50,7 @@ public abstract class RequestSenderTask extends AsyncTask<Object, Integer, Objec
 
     JSONObject onSetupPacket() throws JSONException {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("AppId", "");
+        jsonObject.put("AppId", getUUID());
         jsonObject.put("PushId", "");
         jsonObject.put("AppVersion", "1.0");
         jsonObject.put("Device", "Generic");

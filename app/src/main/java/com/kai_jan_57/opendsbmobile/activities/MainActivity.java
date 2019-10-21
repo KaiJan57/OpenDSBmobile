@@ -34,6 +34,7 @@ import com.kai_jan_57.opendsbmobile.Application;
 import com.kai_jan_57.opendsbmobile.database.AppDatabase;
 import com.kai_jan_57.opendsbmobile.database.Login;
 import com.kai_jan_57.opendsbmobile.database.Node;
+import com.kai_jan_57.opendsbmobile.network.FetchIndexRequestTask;
 import com.kai_jan_57.opendsbmobile.utils.AccountUtils;
 import com.kai_jan_57.opendsbmobile.utils.FileUtils;
 import com.kai_jan_57.opendsbmobile.viewmodels.MainViewModel;
@@ -159,10 +160,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Snackbar.make(findViewById(R.id.main_fragment), exception.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
             hideProgress();
         });
-        mViewModel.setLoginFailListener(() -> {
+        mViewModel.setLoginFailListener(
+                (loginResult, resultStatusInfo) ->
+                        Snackbar.make(findViewById(R.id.main_fragment),
+                            // show custom message if licence is expired
+                            loginResult == FetchIndexRequestTask.LoginResult.Licence_Expired ? resultStatusInfo : getString(R.string.login_failed),
+                            Snackbar.LENGTH_INDEFINITE)
+                        .setAction(R.string.action_sign_in, (view) -> {
             toggleLoginsMenu(null);
             drawer.openDrawer(GravityCompat.START);
-        });
+        }).show());
 
         // on Login change
         mViewModel.getAccount().observe(this, this::updateNavigationHeader);
@@ -384,7 +391,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            SettingsActivity.start(this, mViewModel.getAccount().getValue().name);
+            Account account = mViewModel.getAccount().getValue();
+            if (account != null) {
+                SettingsActivity.start(this, account.name);
+            }
             return true;
         }
 
