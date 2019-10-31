@@ -51,10 +51,10 @@ RequestSenderTask extends AsyncTask<Object, Integer, Object> {
     JSONObject onSetupPacket() throws JSONException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("AppId", getUUID());
-        jsonObject.put("PushId", "");
-        jsonObject.put("AppVersion", "1.0");
-        jsonObject.put("Device", "Generic");
-        jsonObject.put("OsVersion", "9 API Level: 28");
+        //jsonObject.put("PushId", "");
+        jsonObject.put("AppVersion", "2.5.9");
+        jsonObject.put("Device", "");
+        jsonObject.put("OsVersion", "");
         jsonObject.put("Language", Locale.getDefault().getLanguage());
         return jsonObject;
     }
