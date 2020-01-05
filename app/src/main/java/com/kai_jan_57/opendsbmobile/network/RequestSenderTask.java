@@ -22,8 +22,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 import static java.net.HttpURLConnection.HTTP_OK;
 
-public abstract class
-RequestSenderTask extends AsyncTask<Object, Integer, Object> {
+public abstract class RequestSenderTask extends AsyncTask<Object, Integer, Exception> {
 
     private static final String DSBCONTROL_HOST = "https://app.dsbcontrol.de/";
     private static final String DSBCONTROL_JSON_API_PATH = "JsonHandler.ashx/GetData";
@@ -42,13 +41,13 @@ RequestSenderTask extends AsyncTask<Object, Integer, Object> {
 
     void ExecuteRequestSenderTask(String url, RequestType requestType) {
         try {
-            execute(url, onSetupPacket().toString().getBytes(), requestType);
+            execute(url, onSetupRequest().toString().getBytes(), requestType);
         } catch (JSONException e) {
             onException(e);
         }
     }
 
-    JSONObject onSetupPacket() throws JSONException {
+    JSONObject onSetupRequest() throws JSONException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("AppId", getUUID());
         //jsonObject.put("PushId", "");
@@ -61,7 +60,8 @@ RequestSenderTask extends AsyncTask<Object, Integer, Object> {
 
     abstract void onProgress(int progress);
 
-    abstract void onJsonParsed(JSONObject jsonObject);
+    // returns true if the request has to be repeated
+    abstract boolean onJsonParsed(JSONObject jsonObject);
 
     abstract void onEmptyResponse();
 
@@ -69,7 +69,7 @@ RequestSenderTask extends AsyncTask<Object, Integer, Object> {
 
 
     @Override
-    protected Object doInBackground(Object... objects) {
+    protected Exception doInBackground(Object... objects) {
         /*
         if (false) {
             try {
@@ -86,49 +86,58 @@ RequestSenderTask extends AsyncTask<Object, Integer, Object> {
                 return e;
             }
         }*/
-        try {
-            HttpsURLConnection httpsURLConnection = (HttpsURLConnection) new URL(((String) objects[0])).openConnection();
-            httpsURLConnection.setRequestMethod("POST");
-            httpsURLConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-            httpsURLConnection.setDoInput(true);
-            httpsURLConnection.setDoOutput(true);
-            httpsURLConnection.setReadTimeout(10000);
+        boolean repeat = true;
+        while (repeat) {
+            try {
+                HttpsURLConnection httpsURLConnection = (HttpsURLConnection) new URL(((String) objects[0])).openConnection();
+                httpsURLConnection.setRequestMethod("POST");
+                httpsURLConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                httpsURLConnection.setDoInput(true);
+                httpsURLConnection.setDoOutput(true);
+                httpsURLConnection.setReadTimeout(10000);
 
-            byte[] compressed = GzipUtils.encodeGzip((byte[]) objects[1]);
-            JSONObject request = new JSONObject();
-            request.put("Data", new String(Base64.encode(compressed, Base64.DEFAULT)));
-            request.put("DataType", ((RequestType) objects[2]).intValue);
-            request = new JSONObject().put("req", request);
+                byte[] compressed = GzipUtils.encodeGzip((byte[]) objects[1]);
+                JSONObject request = new JSONObject();
+                request.put("Data", new String(Base64.encode(compressed, Base64.DEFAULT)));
+                request.put("DataType", ((RequestType) objects[2]).intValue);
+                request = new JSONObject().put("req", request);
 
-            OutputStream outputStream = httpsURLConnection.getOutputStream();
-            outputStream.write(request.toString().getBytes(StandardCharsets.UTF_8));
-            outputStream.close();
-            httpsURLConnection.connect();
-            int responseCode = httpsURLConnection.getResponseCode();
-            if (responseCode != HTTP_OK) {
-                return new IOException("HTTP error: " + responseCode);
+                OutputStream outputStream = httpsURLConnection.getOutputStream();
+                outputStream.write(request.toString().getBytes(StandardCharsets.UTF_8));
+                outputStream.close();
+                httpsURLConnection.connect();
+                int responseCode = httpsURLConnection.getResponseCode();
+                if (responseCode != HTTP_OK) {
+                    return new IOException("HTTP error: " + responseCode);
+                }
+
+                int contentLength = httpsURLConnection.getContentLength();
+                if (contentLength <= 0) {
+                    return new IllegalStateException("No content received");
+                }
+
+                @SuppressWarnings("UnstableApiUsage") CountingInputStream countingInputStream = new CountingInputStream(httpsURLConnection.getInputStream());
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(countingInputStream, StandardCharsets.UTF_8));
+
+                String line;
+                StringBuilder responseString = new StringBuilder();
+                while ((line = bufferedReader.readLine()) != null) {
+                    responseString.append(line);
+                    publishProgress((int) (countingInputStream.getCount() * 100 / contentLength));
+                }
+                JSONObject jsonObject = new JSONObject(responseString.toString());
+                repeat = onJsonParsed(new JSONObject(new String(GzipUtils.decodeGzip(Base64.decode(jsonObject.getString("d").getBytes(), Base64.DEFAULT)))));
+                if (repeat) {
+                    // update data, i.e. the date
+                    objects[1] = onSetupRequest().toString().getBytes();
+                }
+                // May throw: ProtocolException, IOException, JSONException
+            } catch (Exception exception) {
+                return exception;
             }
-
-            int contentLength = httpsURLConnection.getContentLength();
-            if (contentLength <= 0) {
-                return null;
-            }
-
-            @SuppressWarnings("UnstableApiUsage") CountingInputStream countingInputStream = new CountingInputStream(httpsURLConnection.getInputStream());
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(countingInputStream, StandardCharsets.UTF_8));
-
-            String line;
-            StringBuilder responseString = new StringBuilder();
-            while ((line = bufferedReader.readLine()) != null) {
-                responseString.append(line);
-                publishProgress((int) (countingInputStream.getCount() * 100 / contentLength));
-            }
-            JSONObject jsonObject = new JSONObject(responseString.toString());
-            return new JSONObject(new String(GzipUtils.decodeGzip(Base64.decode(jsonObject.getString("d").getBytes(), Base64.DEFAULT))));
-            // May throw: ProtocolException, IOException, JSONException
-        } catch (Exception exception) {
-            return exception;
         }
+        // No exception occured
+        return null;
     }
 
     @Override
@@ -137,13 +146,13 @@ RequestSenderTask extends AsyncTask<Object, Integer, Object> {
     }
 
     @Override
-    protected void onPostExecute(Object object) {
-        if (object instanceof JSONObject) {
-            onJsonParsed((JSONObject) object);
-        } else if (object != null) {
-            onException((Exception) object);
-        } else {
-            onEmptyResponse();
+    protected void onPostExecute(Exception result) {
+        if (result != null) {
+            if (result instanceof IllegalStateException) {
+                onEmptyResponse();
+            } else {
+                onException(result);
+            }
         }
     }
 

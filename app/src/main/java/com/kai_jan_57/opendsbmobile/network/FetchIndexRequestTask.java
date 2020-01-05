@@ -36,6 +36,9 @@ public class FetchIndexRequestTask extends RequestSenderTask {
 
     private Date mDate;
 
+    private int mAttemptsTotal;
+    private int mAttemptsLeft;
+
     public FetchIndexRequestTask(FetchIndexEventListener fetchIndexEventListener, Login login, String id, String password) {
         mFetchIndexEventListener = fetchIndexEventListener;
         mId = id;
@@ -50,6 +53,7 @@ public class FetchIndexRequestTask extends RequestSenderTask {
     public boolean execute() {
         if (!busy && mFetchIndexEventListener != null && mLogin != null) {
             busy = true;
+            mAttemptsTotal = mAttemptsLeft = 5;
             mDate = new Date();
             ExecuteRequestSenderTask(getJsonApiPath(), GetData);
             return true;
@@ -58,8 +62,8 @@ public class FetchIndexRequestTask extends RequestSenderTask {
     }
 
     @Override
-    JSONObject onSetupPacket() throws JSONException {
-        JSONObject jsonObject = super.onSetupPacket();
+    JSONObject onSetupRequest() throws JSONException {
+        JSONObject jsonObject = super.onSetupRequest();
         jsonObject.put(ProtocolConstants.DATE, ProtocolConstants.DATE_ENCODER.format(mDate));
         jsonObject.put(ProtocolConstants.LAST_UPDATE, ProtocolConstants.DATE_ENCODER.format(mDate));
         jsonObject.put(ProtocolConstants.BUNDLE_ID, Application.getInstance().getResources().getString(R.string.BUNDLE_ID));
@@ -74,9 +78,14 @@ public class FetchIndexRequestTask extends RequestSenderTask {
     }
 
     @Override
-    void onJsonParsed(JSONObject jsonObject) {
-        busy = false;
-        processJson(jsonObject);
+    boolean onJsonParsed(JSONObject jsonObject) {
+        if (processJson(jsonObject)) {
+            return true;
+        }
+        else {
+            busy = false;
+            return false;
+        }
     }
 
     private List<File> mCacheFilesToKeep;
@@ -127,9 +136,11 @@ public class FetchIndexRequestTask extends RequestSenderTask {
                     keep = true;
                     node.mContentCacheDate = equivalent.mContentCacheDate;
                     mCacheFilesToKeep.add(equivalent.getContentCache());
-                    if (equivalent.isNewContentCacheRequired(node.mDate)) {
-                        // cache is deprecated
-                        updateType = UpdateType.CACHE_DEPRECATED;
+                    // equivalent.isNewContentCacheRequired(node.mDate)
+                    // doesn't behave the way it ought as it triggers on every sync when the content was never cached
+                    if (node.mDate.after(equivalent.mDate)) {
+                        // node was updated
+                        updateType = UpdateType.NODE_UPDATED;
                     }
                 } else {
                     // item was not cached before
@@ -153,7 +164,7 @@ public class FetchIndexRequestTask extends RequestSenderTask {
         mNodeIdsToKeep.add(node.mId);
         if (updateType != null) {
             switch (updateType) {
-                case CACHE_DEPRECATED: mUpdatedNodes.add(node); break;
+                case NODE_UPDATED: mUpdatedNodes.add(node); break;
                 case NEW: mNewNodes.add(node); break;
                 case NOT_CACHED: mNotCachedNodes.add(node); break;
             }
@@ -165,7 +176,7 @@ public class FetchIndexRequestTask extends RequestSenderTask {
         }
     }
 
-    private void processJson(JSONObject jsonObject) {
+    private boolean processJson(JSONObject jsonObject) {
         try {
             LoginResult loginResult = LoginResult.values()[jsonObject.getInt(ProtocolConstants.RESULT_CODE)];
             String resultStatusInfo = jsonObject.getString(ProtocolConstants.RESULT_STATUS_INFO);
@@ -206,7 +217,7 @@ public class FetchIndexRequestTask extends RequestSenderTask {
 
                 if (mNodeUpdateEventListener != null) {
                     for (Node node : mUpdatedNodes) {
-                        mNodeUpdateEventListener.onNodeUpdated(node, UpdateType.CACHE_DEPRECATED);
+                        mNodeUpdateEventListener.onNodeUpdated(node, UpdateType.NODE_UPDATED);
                     }
                     for (Node node : mNewNodes) {
                         mNodeUpdateEventListener.onNodeUpdated(node, UpdateType.NEW);
@@ -240,20 +251,32 @@ public class FetchIndexRequestTask extends RequestSenderTask {
                         }
                     }
                 }
+                Log.v(TAG, String.format("Login succeeded after %d/%d rejections", mAttemptsTotal - mAttemptsLeft, mAttemptsTotal));
                 mFetchIndexEventListener.onSuccess(mLogin.mId, false);
             } else {
-                mFetchIndexEventListener.onFail(loginResult, resultStatusInfo);
+                if (loginResult == LoginResult.Login_Failed && mAttemptsLeft > 0) {
+                    // retry logging in with same login information, as some requests are rejected without reason
+                    mAttemptsLeft --;
+                    // prevent web service from identifying request by given date
+                    mDate = new Date();
+                    // redo request
+                    return true;
+                }
+                else {
+                    mFetchIndexEventListener.onFail(loginResult, resultStatusInfo);
+                }
             }
         } catch (Exception e) {
             onException(e);
             Log.e(TAG, LogUtils.getStackTrace(e));
         }
+        return false;
     }
 
     public enum UpdateType {
         NEW,
         NOT_CACHED,
-        CACHE_DEPRECATED,
+        NODE_UPDATED,
     }
 
     @Override
@@ -277,7 +300,7 @@ public class FetchIndexRequestTask extends RequestSenderTask {
     public enum LoginResult {
         Login_OK,
         Login_Failed,
-        Licence_Expired,
+        License_Expired,
     }
 
     public interface FetchIndexEventListener {

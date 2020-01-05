@@ -24,16 +24,29 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
-import com.kai_jan_57.opendsbmobile.account.Authenticator;
-import com.kai_jan_57.opendsbmobile.fragments.ContentOverviewFragment;
-import com.kai_jan_57.opendsbmobile.R;
 import com.kai_jan_57.opendsbmobile.Application;
+import com.kai_jan_57.opendsbmobile.R;
+import com.kai_jan_57.opendsbmobile.account.Authenticator;
 import com.kai_jan_57.opendsbmobile.database.AppDatabase;
 import com.kai_jan_57.opendsbmobile.database.Login;
 import com.kai_jan_57.opendsbmobile.database.Node;
+import com.kai_jan_57.opendsbmobile.fragments.ContentOverviewFragment;
 import com.kai_jan_57.opendsbmobile.network.FetchIndexRequestTask;
 import com.kai_jan_57.opendsbmobile.utils.AccountUtils;
 import com.kai_jan_57.opendsbmobile.utils.FileUtils;
@@ -49,19 +62,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import static com.kai_jan_57.opendsbmobile.Application.PREFERENCE_APPEARANCE_THEME;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
@@ -72,9 +72,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView mNavigationView;
     private TopProgressBar mProgressBar;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private Snackbar mLastSnackbar;
 
-    private TextView titleTextView;
-    private TextView subTitleTextView;
+    private TextView mDrawerTitleTextView;
+    private TextView mDrawerSubtitleTextView;
 
     private Fragment mContentOverviewFragment;
 
@@ -126,9 +127,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mSwipeRefreshLayout = findViewById(R.id.swipe_refresh_layout_main);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
-        titleTextView = mNavigationView.getHeaderView(0).findViewById(R.id.nav_header_title);
+        mDrawerTitleTextView = mNavigationView.getHeaderView(0).findViewById(R.id.nav_header_title);
 
-        subTitleTextView = mNavigationView.getHeaderView(0).findViewById(R.id.nav_header_subtitle);
+        mDrawerSubtitleTextView = mNavigationView.getHeaderView(0).findViewById(R.id.nav_header_subtitle);
 
         mAccountManager = AccountManager.get(this);
 
@@ -157,19 +158,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mViewModel.setProgressListener(progress -> mProgressBar.setProgress(progress));
         mViewModel.setExceptionListener(exception -> {
-            Snackbar.make(findViewById(R.id.main_fragment), exception.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+            mLastSnackbar = Snackbar.make(findViewById(R.id.main_fragment), exception.getLocalizedMessage(), Snackbar.LENGTH_LONG);
+            mLastSnackbar.show();
             hideProgress();
         });
         mViewModel.setLoginFailListener(
-                (loginResult, resultStatusInfo) ->
-                        Snackbar.make(findViewById(R.id.main_fragment),
-                            // show custom message if licence is expired
-                            loginResult == FetchIndexRequestTask.LoginResult.Licence_Expired ? resultStatusInfo : getString(R.string.login_failed),
+                (loginResult, resultStatusInfo) -> {
+                    hideProgress();
+                    // allow browsing cache
+                    mViewModel.updateAvailableMethods();
+                    mLastSnackbar = Snackbar.make(findViewById(R.id.main_fragment),
+                            // show custom message if license is expired
+                            loginResult == FetchIndexRequestTask.LoginResult.License_Expired ? resultStatusInfo : getString(R.string.login_failed),
                             Snackbar.LENGTH_INDEFINITE)
-                        .setAction(R.string.action_sign_in, (view) -> {
-            toggleLoginsMenu(null);
-            drawer.openDrawer(GravityCompat.START);
-        }).show());
+                            .setAction(R.string.action_sign_in, (view) -> {
+                                toggleLoginsMenu(null);
+                                drawer.openDrawer(GravityCompat.START);
+                            });
+                    mLastSnackbar.show();
+                });
 
         // on Login change
         mViewModel.getAccount().observe(this, this::updateNavigationHeader);
@@ -228,6 +235,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void fetchIndex(Account account) {
+        if (mLastSnackbar != null) {
+            mLastSnackbar.dismiss();
+            mLastSnackbar = null;
+        }
         mSwipeRefreshLayout.setRefreshing(true);
         showProgress();
         mViewModel.fetchIndex(mAccountManager, account);
@@ -257,9 +268,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (account != null) {
             Login login = AppDatabase.getInstance(this).getLoginDao().getLoginByName(account.name);
             if (login != null) {
-                titleTextView.setText(login.mAlias);
+                mDrawerTitleTextView.setText(login.mAlias);
             }
-            subTitleTextView.setText(account.name);
+            mDrawerSubtitleTextView.setText(account.name);
         }
     }
 

@@ -2,19 +2,17 @@ package com.kai_jan_57.opendsbmobile.viewmodels;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.Activity;
-import android.os.Bundle;
-
-import com.kai_jan_57.opendsbmobile.R;
-import com.kai_jan_57.opendsbmobile.account.Authenticator;
-import com.kai_jan_57.opendsbmobile.Application;
-import com.kai_jan_57.opendsbmobile.database.Login;
-import com.kai_jan_57.opendsbmobile.database.Node;
-import com.kai_jan_57.opendsbmobile.network.FetchIndexRequestTask;
+import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.kai_jan_57.opendsbmobile.Application;
+import com.kai_jan_57.opendsbmobile.R;
+import com.kai_jan_57.opendsbmobile.database.Login;
+import com.kai_jan_57.opendsbmobile.database.Node;
+import com.kai_jan_57.opendsbmobile.network.FetchIndexRequestTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,15 +108,28 @@ public class MainViewModel extends ViewModel {
     }
 
     public void updateAvailableMethods() {
-        List<Node.Method> result = new ArrayList<>();
         if (mAccount.getValue() != null) {
+            new FindAvailableMethodsTask().execute(mAccount.getValue().name, (FindAvailableMethodsTask.TaskFinishListener) mAvailableMethods::postValue);
+        }
+    }
+
+    private static class FindAvailableMethodsTask extends AsyncTask<Object, Integer, Void> {
+
+        @Override
+        protected Void doInBackground(Object... params) {
+            List<Node.Method> result = new ArrayList<>();
             for (Node.Method method : Node.Method.values()) {
-                if (Application.getInstance().getDatabase().getNodeDao().getNodeCountByMethod(Application.getInstance().getDatabase().getLoginDao().getLoginByName(mAccount.getValue().name).mId, method) > 0) {
+                if (Application.getInstance().getDatabase().getNodeDao().getNodeCountByMethod(Application.getInstance().getDatabase().getLoginDao().getLoginByName(((String)params[0])).mId, method) > 0) {
                     result.add(method);
                 }
             }
+            ((TaskFinishListener)params[1]).onFinished(result);
+            return null;
         }
-        mAvailableMethods.setValue(result);
+
+        public interface TaskFinishListener {
+            void onFinished(List<Node.Method> methods);
+        }
     }
 
     public LiveData<List<Node.Method>> getAvailableMethods() {

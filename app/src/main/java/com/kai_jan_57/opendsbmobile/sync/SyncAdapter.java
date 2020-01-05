@@ -2,10 +2,7 @@ package com.kai_jan_57.opendsbmobile.sync;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.accounts.AuthenticatorException;
-import android.accounts.OperationCanceledException;
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.AbstractThreadedSyncAdapter;
 import android.content.ContentProviderClient;
@@ -16,8 +13,6 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.kai_jan_57.opendsbmobile.R;
-import com.kai_jan_57.opendsbmobile.account.Authenticator;
-import com.kai_jan_57.opendsbmobile.activities.ContentViewerActivity;
 import com.kai_jan_57.opendsbmobile.activities.MainActivity;
 import com.kai_jan_57.opendsbmobile.database.AppDatabase;
 import com.kai_jan_57.opendsbmobile.database.Login;
@@ -26,7 +21,6 @@ import com.kai_jan_57.opendsbmobile.network.FetchIndexRequestTask;
 import com.kai_jan_57.opendsbmobile.utils.LogUtils;
 import com.kai_jan_57.opendsbmobile.utils.NotificationUtils;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -48,7 +42,7 @@ class SyncAdapter extends AbstractThreadedSyncAdapter implements FetchIndexReque
 
     private String mAccountAlias;
 
-    public SyncAdapter(Context context, boolean autoInitialize) {
+    SyncAdapter(Context context, boolean autoInitialize) {
         super(context, autoInitialize);
         mAccountManager = AccountManager.get(context);
         mContext = context;
@@ -89,13 +83,7 @@ class SyncAdapter extends AbstractThreadedSyncAdapter implements FetchIndexReque
         fetchIndexRequestTask.execute();
         try {
             fetchIndexRequestTask.get(1, TimeUnit.MINUTES);
-        } catch (ExecutionException pE) {
-            mSyncResult.stats.numIoExceptions++;
-            Log.e(TAG, LogUtils.getStackTrace(pE));
-        } catch (InterruptedException pE) {
-            mSyncResult.stats.numIoExceptions++;
-            Log.e(TAG, LogUtils.getStackTrace(pE));
-        } catch (TimeoutException pE) {
+        } catch (ExecutionException | InterruptedException | TimeoutException pE) {
             mSyncResult.stats.numIoExceptions++;
             Log.e(TAG, LogUtils.getStackTrace(pE));
         }
@@ -167,7 +155,7 @@ class SyncAdapter extends AbstractThreadedSyncAdapter implements FetchIndexReque
                 //notification.setContentTitle(mContext.getString(R.string.notification_content_new));
                 return;
             }
-            case CACHE_DEPRECATED: {
+            case NODE_UPDATED: {
                 mSyncResult.stats.numUpdates++;
                 notification.setContentTitle(mContext.getString(R.string.notification_content_updated));
                 break;

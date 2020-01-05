@@ -414,9 +414,9 @@ public class ContentViewerActivity extends AppCompatActivity {
 
         @Override
         public Fragment getFragment(int position) {
-            ContentViewerFragment contentViewerFragment = ContentViewerFragment.newInstance(AppDatabase.getInstance(ContentViewerActivity.this).getNodeDao().getChildByIndex(
-                    AppDatabase.getInstance(ContentViewerActivity.this).getNodeDao().getNodeById(mRootNodeIds[mIndex]).mId, position
-            ));
+            ContentViewerFragment contentViewerFragment = ContentViewerFragment
+                    .newInstance(AppDatabase.getInstance(ContentViewerActivity.this).getNodeDao()
+                            .getChildByIndex(mRootNodeIds[mIndex], position));
             ContentViewerActivity.this.findViewById(R.id.photopage_bottom_control_search).setVisibility(contentViewerFragment.isSearchable() ? View.VISIBLE : View.GONE);
 
             return contentViewerFragment;
