@@ -49,6 +49,8 @@ public class ContentViewerActivity extends AppCompatActivity {
     private static final String EXTRA_INDEX = "index";
     private static final String STATE_VISIBILITY = "visibility";
     private static final String STATE_SEARCHABLE = "searchable";
+    private static final String STATE_SEARCHING = "searching";
+    private static final String STATE_QUERY = "query";
 
     private ZoomableViewPager mViewPager;
     private TrackingFragmentPagerAdapter mPagerAdapter;
@@ -59,6 +61,9 @@ public class ContentViewerActivity extends AppCompatActivity {
     private long[] mRootNodeIds;
 
     private int mIndex = 0;
+
+    private boolean mSearching;
+    private String mCurrentQuery;
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -123,8 +128,11 @@ public class ContentViewerActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putInt(EXTRA_INDEX, mIndex);
         outState.putBoolean(STATE_VISIBILITY, mVisible);
         outState.putBoolean(STATE_SEARCHABLE, findViewById(R.id.photopage_bottom_control_search).getVisibility() == View.VISIBLE);
+        outState.putBoolean(STATE_SEARCHING, mSearching);
+        outState.putString(STATE_QUERY, mCurrentQuery);
     }
 
     @SuppressLint("ObsoleteSdkInt")
@@ -163,7 +171,10 @@ public class ContentViewerActivity extends AppCompatActivity {
         }
 
         if (getIntent().getExtras() != null) {
-            if (getIntent().hasExtra(EXTRA_INDEX)) {
+            if (savedInstanceState != null) {
+                mIndex = savedInstanceState.getInt(EXTRA_INDEX);
+            }
+            else if (getIntent().hasExtra(EXTRA_INDEX)) {
                 mIndex = getIntent().getExtras().getInt(EXTRA_INDEX);
             } else {
                 finish();
@@ -205,6 +216,11 @@ public class ContentViewerActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {
             }
         });
+
+        if (savedInstanceState != null) {
+            mSearching = savedInstanceState.getBoolean(STATE_SEARCHING);
+            mCurrentQuery = savedInstanceState.getString(STATE_QUERY);
+        }
     }
 
     @Override
@@ -220,19 +236,26 @@ public class ContentViewerActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
                 searchView.setIconified(false);
+                searchView.setQuery(mCurrentQuery, false);
                 searchView.requestFocusFromTouch();
                 disableAutoHide();
                 searchView.setOnCloseListener(() -> {
                     searchView.setOnCloseListener(null);
-                    searchView.setQuery("", true);
+                    // searchView.setQuery("", true); doesn't work for some reason
+                    Fragment fragment = mPagerAdapter.findFragment(mViewPager.getCurrentPosition());
+                    if (fragment instanceof ContentViewerFragment) {
+                        ((ContentViewerFragment) fragment).search("");
+                    }
                     searchItem.collapseActionView();
                     return true;
                 });
+                mSearching = true;
                 return true;
             }
 
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
+                mSearching = false;
                 searchView.setIconified(true);
                 searchView.clearFocus();
                 searchItem.setVisible(false);
@@ -254,9 +277,14 @@ public class ContentViewerActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if (mSearching)
+                    mCurrentQuery = newText;
                 return true;
             }
         });
+        if (mSearching) {
+            searchItem.expandActionView();
+        }
         return true;
     }
 
@@ -280,7 +308,8 @@ public class ContentViewerActivity extends AppCompatActivity {
                 int newIndex = mIndex + 1;
                 updateBackNextControls(newIndex);
                 updateViewPager(newIndex);
-                delayAutohide();
+                if (mOptionsMenu.findItem(R.id.app_bar_search).isActionViewExpanded())
+                    delayAutohide();
                 return true;
             }
         }

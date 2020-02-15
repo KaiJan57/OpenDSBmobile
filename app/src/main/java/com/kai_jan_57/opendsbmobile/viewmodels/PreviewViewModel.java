@@ -60,8 +60,15 @@ public class PreviewViewModel extends ViewModel implements NodeDownloader.Downlo
         if (mPreviewContentNode == null) {
             setException(new Exception(ERROR_NO_PREVIEW));
         } else {
-            mStatus.setValue(Status.LOADING);
-            new NodeDownloader(mPreviewContentNode, this, resolution);
+            //TODO: add setting that controls whether or not to load previews
+            boolean mPreviewEnabled = true;
+            if (mPreviewEnabled) {
+                mStatus.setValue(Status.LOADING);
+                new NodeDownloader(mPreviewContentNode, this, resolution);
+            } else if (!applyImage(BitmapFactory.decodeFile(node.getPreviewCache().getAbsolutePath()))) {
+                // preview is not cached.
+                mStatus.setValue(Status.IDLE);
+            }
         }
     }
 

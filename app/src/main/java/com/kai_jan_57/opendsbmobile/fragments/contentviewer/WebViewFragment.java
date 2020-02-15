@@ -73,7 +73,11 @@ public class WebViewFragment extends ContentViewerFragment {
         mWebView.getSettings().setBuiltInZoomControls(true);
         mWebView.getSettings().setDisplayZoomControls(false);
         mWebView.getSettings().setSupportZoom(true);
-        mWebView.getSettings().setUseWideViewPort(true);
+        mWebView.getSettings().setUseWideViewPort(false);
+
+        // content can always be viewed in an external browser, so prefer privacy over convenience
+        mWebView.getSettings().setJavaScriptEnabled(false);
+        mWebView.getSettings().setBlockNetworkLoads(true);
 
         if (getNode().mContentType == Node.ContentType.URL) {
             mWebView.loadUrl(getNode().mContent);
@@ -155,18 +159,21 @@ public class WebViewFragment extends ContentViewerFragment {
 
     @Override
     public void shareContent(View view) {
-        if (!mWebViewScale.isNaN()) {
+        //if (!mWebViewScale.isNaN()) {
             try {
-                Bitmap bitmap = Bitmap.createBitmap((int) (mWebView.getWidth() * mWebViewScale + 0.5f), (int) (mWebView.getContentHeight() * mWebViewScale + 0.5f), Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(bitmap);
-                mWebView.draw(canvas);
+                //Bitmap bitmap = Bitmap.createBitmap((int) (mWebView.getWidth() * mWebViewScale + 0.5f), (int) (mWebView.getContentHeight() * mWebViewScale + 0.5f), Bitmap.Config.ARGB_8888);
+                //Canvas canvas = new Canvas(bitmap);
+                //mWebView.draw(canvas);
+                mWebView.setDrawingCacheEnabled(true);
+                Bitmap bitmap = mWebView.getDrawingCache(true);
                 if (getActivity() != null) {
                     ShareUtils.shareBitmap(getActivity(), bitmap, getString(R.string.share_as_image));
                 }
+                mWebView.setDrawingCacheEnabled(false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        //}
     }
 
     @Override
